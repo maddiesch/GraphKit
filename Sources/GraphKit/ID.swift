@@ -38,3 +38,9 @@ extension ID : Hashable {
         hasher.combine(self.rawValue)
     }
 }
+
+extension ID : CustomStringConvertible {
+    public var description: String {
+        return self.rawValue
+    }
+}

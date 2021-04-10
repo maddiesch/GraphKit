@@ -13,6 +13,8 @@ public enum Value {
     case integer(Int64)
     case optionalInteger(Int64?)
     case boolean(Bool)
+    case id(ID)
+    case optionalID(ID?)
     case nilValue
 }
 
@@ -32,6 +34,14 @@ extension Value : Encodable {
         case .integer(let val):
             try container.encode(val)
         case .optionalInteger(let optional):
+            if let val = optional {
+                try container.encode(val)
+            } else {
+                try container.encodeNil()
+            }
+        case .id(let val):
+            try container.encode(val)
+        case .optionalID(let optional):
             if let val = optional {
                 try container.encode(val)
             } else {
