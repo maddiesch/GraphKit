@@ -15,7 +15,6 @@ extension URLSession {
             
             return self.dataTaskPublisher(for: request)
                 .require(httpStatusWithinRange: (200..<201))
-                .retry(3)
                 .map(\.data)
                 .decode(type: Response<QueryType.ResultType, ErrorType>.self, decoder: decoder)
                 .eraseToAnyPublisher()
